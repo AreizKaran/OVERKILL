@@ -3,6 +3,9 @@ import react from '@vitejs/plugin-react';
 import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
+  // Relative asset URLs let the built app be served from any sub-path
+  // (a static host, a preview link) rather than only from the domain root.
+  base: process.env.VITE_BASE || '/',
   plugins: [react(), tailwindcss()],
   server: {
     port: 5173,

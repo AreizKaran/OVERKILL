@@ -1,5 +1,5 @@
 import { lazy, Suspense } from 'react';
-import { BrowserRouter, Navigate, Route, Routes, useLocation } from 'react-router-dom';
+import { BrowserRouter, HashRouter, Navigate, Route, Routes, useLocation } from 'react-router-dom';
 import { AuthProvider, useAuth } from './context/AuthContext.jsx';
 import { ThemeProvider } from './context/ThemeContext.jsx';
 import { ToastProvider } from './context/ToastContext.jsx';
@@ -27,6 +27,10 @@ const Notifications = lazy(() => import('./pages/modules/Notifications.jsx'));
 const Profile = lazy(() => import('./pages/modules/Profile.jsx'));
 const Users = lazy(() => import('./pages/modules/Users.jsx'));
 const NotFound = lazy(() => import('./pages/NotFound.jsx'));
+
+// Hosts that cannot rewrite unknown paths to index.html (preview links, plain
+// static buckets) need hash routing so a deep link or a refresh still resolves.
+const Router = import.meta.env.VITE_ROUTER === 'hash' ? HashRouter : BrowserRouter;
 
 function BootScreen() {
   return (
@@ -124,7 +128,7 @@ function AppRoutes() {
 export default function App() {
   return (
     <ThemeProvider>
-      <BrowserRouter>
+      <Router>
         <AuthProvider>
           <ToastProvider>
             <Suspense fallback={<BootScreen />}>
@@ -132,7 +136,7 @@ export default function App() {
             </Suspense>
           </ToastProvider>
         </AuthProvider>
-      </BrowserRouter>
+      </Router>
     </ThemeProvider>
   );
 }

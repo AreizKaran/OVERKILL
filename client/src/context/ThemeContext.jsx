@@ -11,8 +11,20 @@ const readStored = () => {
   }
 };
 
+/**
+ * First run: follow the theme the host page has stamped on <html>, if any,
+ * so an embedded portal opens in the viewer's chosen theme rather than
+ * always starting on "system".
+ */
+const initialTheme = () => {
+  const stored = readStored();
+  if (stored) return stored;
+  const stamped = document.documentElement.dataset.theme;
+  return stamped === 'dark' || stamped === 'light' ? stamped : 'system';
+};
+
 export function ThemeProvider({ children }) {
-  const [theme, setTheme] = useState(() => readStored() || 'system');
+  const [theme, setTheme] = useState(initialTheme);
 
   useEffect(() => {
     const root = document.documentElement;

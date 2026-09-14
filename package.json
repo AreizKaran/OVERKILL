@@ -2,7 +2,7 @@
   "name": "ecampus-elo-portal",
   "version": "1.0.0",
   "private": true,
-  "description": "eCampus ELO Portal — Academic Management System for Sikkim Manipal Institute of Technology",
+  "description": "eCampus ELO Portal \u2014 Academic Management System for Sikkim Manipal Institute of Technology",
   "scripts": {
     "install:all": "npm --prefix client install && npm --prefix server install",
     "dev": "npm --prefix client run dev",
@@ -10,7 +10,8 @@
     "build": "npm --prefix client run build",
     "preview": "npm --prefix client run preview",
     "start:api": "npm --prefix server start",
-    "seed": "npm --prefix server run seed"
+    "seed": "npm --prefix server run seed",
+    "build:preview": "npm --prefix client run build:preview"
   },
   "engines": {
     "node": ">=18"

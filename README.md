@@ -55,6 +55,17 @@ npm run dev          # → http://localhost:5173
 
 Open the app, click one of the three demo accounts on the sign-in screen, and explore.
 
+### A shareable static preview
+
+```bash
+npm run build:preview     # → client/dist-preview/
+```
+
+This is the same app built with relative asset URLs and hash routing, so the
+folder runs from any static host, any sub-path, or straight off the filesystem —
+deep links and refreshes included. Since Demo Mode needs no back end, the output
+is a complete, self-contained preview of the portal.
+
 ---
 
 ## Demo Mode
@@ -378,7 +389,9 @@ Tokens live in `client/src/index.css` (Tailwind v4 `@theme`).
 
 **Front end** — `npm run build` emits a static `client/dist/`, deployable to any static host
 (Netlify, Vercel, S3, nginx). Set `VITE_API_URL` at build time. The app is a single-page
-application, so point unmatched routes at `index.html`.
+application, so point unmatched routes at `index.html`. Where the host cannot rewrite unknown
+paths — a preview link, a plain bucket, a sub-path — use `npm run build:preview` instead, which
+switches to relative asset URLs and hash routing so deep links and refreshes still resolve.
 
 **API** — `npm --prefix server start` behind a process manager or container. Set every variable in
 `server/.env.example`, use a strong `JWT_SECRET`, put it behind TLS, and point `CLIENT_URL` at the
