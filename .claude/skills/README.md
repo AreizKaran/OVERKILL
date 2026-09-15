@@ -6,7 +6,7 @@ because the `/plugin` command is not available in this environment.
 | | |
 |---|---|
 | Source | https://github.com/nextlevelbuilder/ui-ux-pro-max-skill |
-| Commit | `7f69fed6a2717900085f1bc3b263721f8ba025e2` |
+| Commit | `15de38f` (tip of `main`) |
 | Version | 2.13.0 |
 | License | MIT (see each skill directory) |
 
