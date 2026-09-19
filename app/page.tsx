@@ -1,4 +1,12 @@
 import { cn } from "@/lib/utils";
+import {
+  Link000,
+  Link001,
+  Link002,
+  Link003,
+  Link004,
+  Link005,
+} from "@/components/ui/skiper40";
 
 /**
  * Token proof page.
@@ -66,6 +74,24 @@ export default function Home() {
               </span>
             </div>
           ))}
+        </div>
+      </section>
+
+      <section className="border-border mt-16 border-t pt-8">
+        <span className="label text-brass">skiper40 — animated link</span>
+        <p className="text-muted-foreground mt-4 max-w-[64ch] text-sm leading-relaxed font-light">
+          Six variants, all 300ms on <code className="text-foreground">cubic-bezier(0.4,0,0.2,1)</code>.
+          Hover each one. The last two invert their own text through
+          <code className="text-foreground"> mix-blend-difference</code>, so they
+          read correctly on either ground.
+        </p>
+        <div className="mt-8 flex flex-col items-start gap-6 font-display text-2xl">
+          <Link000 href="#000">Underline, out right &amp; in left</Link000>
+          <Link001 href="#001">Underline with rising arrow</Link001>
+          <Link002 href="#002">Mirrored origin</Link002>
+          <Link003 href="#003">Opens from the centre</Link003>
+          <Link004 href="#004">Block grows from baseline</Link004>
+          <Link005 href="#005">Block wipes across</Link005>
         </div>
       </section>
 
