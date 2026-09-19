@@ -1,0 +1,126 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* ---------------------------------------------------------------------------
+   Optique — brand tokens
+   Source of truth: design-system/optique-3d/MASTER.md
+
+   The default theme is the editorial light direction. Two of these values
+   deliberately differ from the reference that direction was drawn from:
+   its brass accent measures 2.83:1 and its caption grey 2.53:1 on this warm
+   ground, both under the 4.5:1 minimum. Deepened here to 5.13:1 and 4.58:1.
+--------------------------------------------------------------------------- */
+:root {
+  --optique-white: #ffffff;
+  --optique-warm: #f4f2ee;   /* panel                        */
+  --optique-warm-2: #eae7e2; /* deeper panel                 */
+  --optique-ink: #1a1a1a;    /* 17.40:1 on white             */
+  --optique-muted: #6e6e6a;  /* 4.58:1 on warm               */
+  --optique-brass: #6f6730;  /* 5.13:1 on warm               */
+  --optique-hairline: #d8d5d0; /* decorative rules only — 1.46:1 */
+
+  /* acetate tones used by the product renderer */
+  --optique-tortoise: #4a2c17;
+  --optique-amber: #c2873f;
+  --optique-olive: #5a5c3a;
+
+  --radius: 0.25rem; /* editorial direction is near-square, not rounded */
+
+  /* --- shadcn semantic tokens, mapped onto the brand ------------------- */
+  --background: var(--optique-white);
+  --foreground: var(--optique-ink);
+  --card: var(--optique-white);
+  --card-foreground: var(--optique-ink);
+  --popover: var(--optique-white);
+  --popover-foreground: var(--optique-ink);
+  --primary: var(--optique-ink);
+  --primary-foreground: var(--optique-white);
+  --secondary: var(--optique-warm);
+  --secondary-foreground: var(--optique-ink);
+  --muted: var(--optique-warm);
+  --muted-foreground: var(--optique-muted);
+  --accent: var(--optique-brass);
+  --accent-foreground: var(--optique-white);
+  --destructive: #9a3b34;
+  --border: var(--optique-hairline);
+  --input: #8a8a83; /* 3.16:1 — control edges need the stronger grey */
+  --ring: var(--optique-brass);
+}
+
+/* ---------------------------------------------------------------------------
+   The dark fashion-tech direction, kept as an alternative.
+   Electric blue is legible only on ink (6.34:1) and fails on cream (2.80:1),
+   which is why it is scoped to this dark theme and never used on light.
+--------------------------------------------------------------------------- */
+.dark {
+  --optique-ink: #0b0d0e;
+  --optique-charcoal: #191c1e;
+  --optique-cream: #f6f4ef;
+  --optique-accent: #6c8cff; /* 6.34:1 on ink */
+
+  --background: var(--optique-ink);
+  --foreground: var(--optique-cream);
+  --card: var(--optique-charcoal);
+  --card-foreground: var(--optique-cream);
+  --popover: var(--optique-charcoal);
+  --popover-foreground: var(--optique-cream);
+  --primary: var(--optique-accent);
+  --primary-foreground: var(--optique-ink); /* black label: 6.34:1, not white at 3.07:1 */
+  --secondary: #22262a;
+  --secondary-foreground: var(--optique-cream);
+  --muted: #22262a;
+  --muted-foreground: #8e948f;
+  --accent: var(--optique-accent);
+  --accent-foreground: var(--optique-ink);
+  --destructive: #ff7a7a;
+  --border: #2c3136;
+  --input: #2c3136;
+  --ring: var(--optique-accent);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --color-brass: var(--optique-brass);
+  --color-hairline: var(--optique-hairline);
+  --color-warm: var(--optique-warm);
+
+  --radius-sm: calc(var(--radius) - 2px);
+  --radius-md: var(--radius);
+  --radius-lg: calc(var(--radius) + 2px);
+
+  --font-display: var(--font-playfair);
+  --font-sans: var(--font-montserrat);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  /* the tracked-out uppercase label is this brand's signature device */
+  .label {
+    @apply text-[0.6875rem] font-medium uppercase tracking-[0.28em];
+  }
+}
