@@ -89,3 +89,36 @@ how it looks.
 - Scanned before install for injection patterns, credential access and shell
   calls: clean. The only `API_KEY` hit is a Shopify meta tag inside a commented
   code sample.
+
+---
+
+# design-md
+
+Not a skill upstream — an *awesome-list* of 74 `DESIGN.md` files, wrapped here
+as a skill so the collection is actually queryable.
+
+| | |
+|---|---|
+| Source | https://github.com/VoltAgent/awesome-design-md |
+| Commit | `8147538` |
+| License | MIT |
+
+Each reference analyses a real website down to its tokens: colours,
+typography, radii, spacing, components, plus prose on layout, elevation and
+responsive behaviour. `SKILL.md` carries the full index with a one-line
+character note per entry, so a lookup costs one file read rather than a
+directory scan.
+
+## Two caveats recorded in the skill itself
+
+**Format is not uniform.** 64 entries carry YAML token frontmatter; 10 are an
+older prose-only format with no machine-readable token block. Those are marked
+`◦` in the index.
+
+**Palettes are observed, not validated.** These record what real sites ship,
+and real sites fail WCAG routinely. Contrast must be computed before any pair
+is adopted — the same check that caught the 2.83:1 and 2.53:1 failures in the
+editorial reference under `design-system/optique-3d/`.
+
+Per-entry `README.md` files were not copied: upstream reduced them to stubs
+pointing at getdesign.md, so they carry no content.
