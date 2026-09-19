@@ -43,3 +43,49 @@ sed -i 's|\${CLAUDE_PLUGIN_ROOT}/\.claude/skills/ui-ux-pro-max/|.claude/skills/u
 
 The upstream paths use `${CLAUDE_PLUGIN_ROOT}`, which is only set for plugin
 installs; this repository uses a project-level skills install instead.
+
+---
+
+# taste-skill
+
+A second plugin, installed the same way (manually — `/plugin` is unavailable here).
+
+| | |
+|---|---|
+| Source | https://github.com/Leonxlnx/taste-skill |
+| Commit | `e79ca9e` |
+| Version | 1.0.0 |
+| License | MIT |
+
+13 design skills, copied from the plugin's `skills/` tree. Markdown only —
+no scripts, no executables, so nothing here runs; these are instructions the
+agent reads.
+
+## Skills
+
+**Design direction** — `taste-skill` (anti-slop frontend, the headline one),
+`brutalist-skill`, `minimalist-skill`, `soft-skill`, `redesign-skill`,
+`stitch-skill`, `gpt-tasteskill`, `brandkit`.
+
+**Image generation** — `imagegen-frontend-web`, `imagegen-frontend-mobile`,
+`image-to-code-skill`. These generate design references as images; the first
+two explicitly do not write code.
+
+**Behaviour** — `output-skill` (`full-output-enforcement`) is not a design
+skill. It modifies output behaviour: bans placeholder patterns like
+`// TODO` and `// rest of code`, and enforces complete implementations.
+Worth knowing it is active, since it changes how work is produced rather than
+how it looks.
+
+## Notes
+
+- `taste-skill-v1` is the superseded version of `taste-skill`, kept by upstream
+  only for exact backward compatibility. Both are installed because the plugin
+  ships both; delete `taste-skill-v1` if two near-identical design skills
+  competing for the same trigger is a problem.
+- Directory names and frontmatter `name:` fields differ for several skills
+  (`brutalist-skill` declares `industrial-brutalist-ui`, `soft-skill` declares
+  `high-end-visual-design`, and so on). Expect the declared name in listings.
+- Scanned before install for injection patterns, credential access and shell
+  calls: clean. The only `API_KEY` hit is a Shopify meta tag inside a commented
+  code sample.
