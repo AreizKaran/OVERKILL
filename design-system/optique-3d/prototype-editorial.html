@@ -1,0 +1,541 @@
+<title>Havana Brown</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Montserrat:wght@300;400;500;600&display=swap">
+<style>
+  /* Editorial optical commerce. Single committed light world — every colour painted. */
+  :root{
+    --white:#FFFFFF;
+    --warm:#F4F2EE;       /* panel */
+    --warm-2:#EAE7E2;     /* deeper panel */
+    --ink:#1A1A1A;        /* 17.40:1 on white */
+    --muted:#6E6E6A;      /* 4.58:1 on warm — the reference uses ~2.53:1 */
+    --brass:#6F6730;      /* 5.13:1 on warm — the reference uses ~2.83:1 */
+    --hairline:#D8D5D0;   /* decorative rules only */
+    --tort-dark:#4A2C17;
+    --tort-mid:#8A5A2B;
+    --tort-amber:#C2873F;
+    --ease:cubic-bezier(.22,1,.36,1);
+    color-scheme:light;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;background:var(--white);color:var(--ink);
+    font-family:Montserrat,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+    font-weight:400;font-size:1rem;line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  .serif{font-family:"Playfair Display",Georgia,"Times New Roman",serif}
+  h1,h2,h3{font-family:"Playfair Display",Georgia,"Times New Roman",serif;
+    font-weight:400;margin:0;text-wrap:balance;letter-spacing:-.005em}
+  p{margin:0}
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%}
+  :focus-visible{outline:2px solid var(--brass);outline-offset:3px}
+
+  /* tracked-out uppercase label — the reference's signature device */
+  .label{
+    font-size:.6875rem;font-weight:500;text-transform:uppercase;
+    letter-spacing:.28em;line-height:1.4;
+  }
+  .label-sm{font-size:.625rem;letter-spacing:.24em;text-transform:uppercase;font-weight:500}
+
+  /* ---------------- nav ---------------- */
+  .nav{
+    position:sticky;top:env(safe-area-inset-top,0px);z-index:40;
+    display:flex;align-items:center;gap:2rem;
+    padding:1rem clamp(1rem,3vw,2.5rem);
+    background:rgba(255,255,255,.93);
+    backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+    border-bottom:1px solid var(--hairline);
+  }
+  .mark{
+    width:56px;height:56px;border-radius:50%;background:var(--ink);color:var(--white);
+    display:grid;place-items:center;text-align:center;flex:none;line-height:1;
+  }
+  .mark b{font-family:"Playfair Display",serif;font-size:1.1875rem;font-weight:400;letter-spacing:.02em;display:block}
+  .mark span{font-size:.4375rem;letter-spacing:.12em;text-transform:uppercase;display:block;margin-top:2px;opacity:.85}
+  .menu{display:flex;gap:2rem;flex:1}
+  .menu a{
+    font-size:.6875rem;font-weight:500;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--ink);padding-block:.5rem;min-height:24px;display:inline-flex;align-items:center;
+    border-bottom:1px solid transparent;transition:border-color .25s var(--ease),color .25s var(--ease);
+  }
+  .menu a:hover{border-bottom-color:var(--ink)}
+  .menu a[aria-current="page"]{color:var(--brass);border-bottom-color:var(--brass)}
+  .order{display:inline-flex;align-items:center;gap:.5rem;font-size:.6875rem;
+    letter-spacing:.14em;text-transform:uppercase;font-weight:500;
+    background:none;border:0;cursor:pointer;color:var(--ink);padding:.6rem .2rem;min-height:44px}
+  .order svg{color:var(--brass)}
+  @media(max-width:880px){
+    .menu{display:none}
+    .mark{width:46px;height:46px}
+  }
+
+  /* ---------------- hero ---------------- */
+  .hero{position:relative;min-height:clamp(360px,48vh,470px);display:grid;
+    grid-template-rows:auto 1fr;isolation:isolate;overflow:hidden;background:var(--warm)}
+  .hero .brief{
+    position:absolute;left:clamp(1rem,3vw,2.5rem);bottom:1.25rem;z-index:2;
+    background:rgba(255,255,255,.92);border:1px solid var(--hairline);
+    padding:.7rem .9rem;max-width:min(320px,80%);
+  }
+  .hero .brief .label-sm{color:var(--brass);display:block}
+  .hero .brief p{font-size:.75rem;color:var(--muted);margin-top:.35rem;line-height:1.5;font-weight:300}
+  .hero .plate{position:absolute;inset:0;z-index:-1}
+  .hero .plate canvas{width:100%;height:100%;display:block}
+  .hero .top{padding:clamp(2rem,5vw,3.5rem) 1rem 0;text-align:center}
+  .hero .eyebrow{color:var(--brass);display:block}
+  .hero h1{font-size:clamp(2.75rem,8vw,5.5rem);line-height:1.02;margin-top:1.25rem}
+  .scrollpill{
+    position:absolute;left:50%;transform:translateX(-50%);bottom:0;z-index:2;
+    background:var(--white);border:1px solid var(--hairline);border-bottom:0;
+    padding:.75rem 1.1rem .8rem;display:flex;flex-direction:column;align-items:center;gap:.3rem;
+    cursor:pointer;color:var(--ink);min-height:56px;
+  }
+  .scrollpill .label-sm{letter-spacing:.2em}
+  .scrollpill svg{animation:nudge 2.4s var(--ease) infinite}
+  @keyframes nudge{0%,100%{transform:translateY(0)}50%{transform:translateY(3px)}}
+
+  /* ---------------- panels ---------------- */
+  .split{display:grid;grid-template-columns:1fr 2fr;border-bottom:1px solid var(--hairline)}
+  .split.flip{grid-template-columns:2fr 1fr}
+  .half{display:grid;grid-template-columns:1fr 1fr;border-bottom:1px solid var(--hairline)}
+  @media(max-width:860px){
+    .split,.split.flip,.half{grid-template-columns:1fr}
+  }
+
+  .stack{display:grid;grid-template-rows:1fr 1fr;border-right:1px solid var(--hairline)}
+  .prodcell{
+    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.9rem;
+    padding:clamp(1.75rem,4vw,3rem) 1.5rem;background:var(--white);
+    border-bottom:1px solid var(--hairline);
+  }
+  .stack .prodcell:last-child{border-bottom:0}
+  .prodcell .shot{width:min(230px,80%);aspect-ratio:3/2}
+  .prodcell canvas{width:100%;height:100%;display:block}
+  .prodcell .cap{font-family:"Playfair Display",serif;font-size:1rem;color:var(--ink)}
+
+  .pitch{
+    background:var(--warm);padding:clamp(2rem,5vw,4.5rem) clamp(1.5rem,4vw,4rem);
+    display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden;
+  }
+  .pitch.center{text-align:center;align-items:center}
+  .pitch h2{font-size:clamp(1.75rem,3.4vw,2.6rem);line-height:1.15}
+  .pitch p{color:var(--muted);font-size:.875rem;font-weight:300;max-width:34ch;margin-top:1rem;line-height:1.85}
+  .pitch.center p{max-width:42ch}
+  .outline{
+    display:inline-flex;align-items:center;justify-content:center;
+    margin-top:1.75rem;padding:.9rem 1.6rem;min-height:48px;
+    border:1px solid var(--ink);background:transparent;color:var(--ink);cursor:pointer;
+    font-size:.625rem;font-weight:500;letter-spacing:.24em;text-transform:uppercase;
+    transition:background .3s var(--ease),color .3s var(--ease);align-self:flex-start;
+  }
+  .pitch.center .outline{align-self:center}
+  .outline:hover{background:var(--ink);color:var(--white)}
+
+  /* bleed product — large frame photograph position */
+  .bleed{position:relative;background:var(--warm);display:grid;place-items:center;
+    padding:clamp(1.5rem,3vw,2.5rem);min-height:280px}
+  .bleed .big{width:100%;max-width:560px;aspect-ratio:16/11}
+  .bleed canvas{width:100%;height:100%;display:block}
+
+  /* photography slot — honest placeholder, art-direction visible */
+  .photo{
+    position:relative;min-height:clamp(320px,44vw,520px);
+    background:linear-gradient(150deg,#E4E0DA 0%,#D6D1C9 45%,#C9C3B9 100%);
+    display:flex;align-items:flex-end;padding:1.25rem;
+  }
+  .photo::after{
+    content:"";position:absolute;inset:0;pointer-events:none;opacity:.5;
+    background-image:radial-gradient(#00000012 1px,transparent 1px);background-size:3px 3px;
+  }
+  .photo .brief{
+    position:relative;z-index:1;background:rgba(255,255,255,.92);
+    border:1px solid var(--hairline);padding:.7rem .9rem;max-width:min(300px,86%);
+  }
+  .photo .brief .label-sm{color:var(--brass);display:block}
+  .photo .brief p{font-size:.75rem;color:var(--muted);margin-top:.35rem;line-height:1.5;font-weight:300}
+
+  .dots{display:flex;gap:.45rem;justify-content:center;margin-top:1.75rem}
+  .dot{width:7px;height:7px;border-radius:50%;background:var(--hairline);border:0;padding:0;cursor:pointer}
+  .dot[aria-current="true"]{background:var(--ink)}
+  .dotwrap{display:flex;gap:.45rem;justify-content:center;align-items:center;min-height:44px}
+
+  /* ---------------- three-up ---------------- */
+  .trio{display:grid;grid-template-columns:repeat(3,1fr);border-bottom:1px solid var(--hairline)}
+  @media(max-width:760px){.trio{grid-template-columns:1fr}}
+  .trio .prodcell{border-right:1px solid var(--hairline);border-bottom:0}
+  .trio .prodcell:last-child{border-right:0}
+  .trio .prodcell .shot{width:min(240px,78%)}
+  .trio .prodcell .price{font-size:.75rem;color:var(--muted);letter-spacing:.05em}
+
+  .sectionhead{text-align:center;padding:clamp(2.5rem,5vw,4rem) 1.5rem 0}
+  .sectionhead .label{color:var(--brass)}
+  .sectionhead h2{font-size:clamp(1.75rem,3.4vw,2.6rem);margin-top:.9rem}
+
+  /* ---------------- footer / spec ---------------- */
+  .foot{background:var(--warm);padding:clamp(2.5rem,5vw,4rem) clamp(1.5rem,4vw,4rem);
+    border-top:1px solid var(--hairline)}
+  .footgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:2rem;max-width:1100px;margin-inline:auto}
+  .footgrid h3{font-size:1.125rem}
+  .footgrid ul{list-style:none;padding:0;margin:.9rem 0 0;display:flex;flex-direction:column;gap:.55rem}
+  .footgrid a{font-size:.8125rem;color:var(--muted);min-height:24px;display:inline-flex;align-items:center}
+  .footgrid a:hover{color:var(--ink)}
+
+  .specnote{max-width:1100px;margin:2.5rem auto 0;border-top:1px solid var(--hairline);padding-top:2rem}
+  .specnote .label{color:var(--brass)}
+  .swatchrow{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1rem;margin-top:1.25rem}
+  .swatch{border:1px solid var(--hairline);background:var(--white);padding:.85rem}
+  .swatch i{display:block;height:34px;border:1px solid var(--hairline);margin-bottom:.6rem}
+  .swatch code{font-size:.6875rem;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;color:var(--ink)}
+  .swatch em{display:block;font-style:normal;font-size:.6875rem;color:var(--muted);margin-top:.25rem}
+  .ok{color:#3F6B45;font-weight:500}
+  .no{color:#9A3B34;font-weight:500}
+
+  @media (prefers-reduced-motion: reduce){
+    *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;
+      transition-duration:.001ms!important}
+  }
+</style>
+
+<nav class="nav">
+  <span class="mark"><span><b>O</b><span>optique</span></span></span>
+  <span class="menu">
+    <a href="#collection">Men&rsquo;s : Optical</a>
+    <a href="#collection" aria-current="page">Women&rsquo;s : Optical</a>
+    <a href="#about">About Us</a>
+    <a href="#about">Free Shipping &amp; Returns</a>
+  </span>
+  <button class="order" id="orderBtn">
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 7h12l-1 12H7L6 7Z"/><path d="M9 7a3 3 0 0 1 6 0"/></svg>
+    Your Order (<span id="orderCount">1</span>)
+  </button>
+</nav>
+
+<!-- ============ HERO ============ -->
+<header class="hero">
+  <span class="plate"><canvas id="heroPlate"></canvas></span>
+  <div class="top">
+    <span class="label eyebrow">Special Collection</span>
+    <h1>Havana Brown</h1>
+  </div>
+  <span class="brief">
+    <span class="label-sm">Photography &mdash; hero</span>
+    <p>Full-bleed lifestyle, 16:7. Model wearing Havana Brown, coastline behind,
+       late afternoon sun from camera right. The wash below stands in at the exact
+       ratio, so dropping the plate in shifts nothing.</p>
+  </span>
+  <button class="scrollpill" id="scrollPill" aria-label="Scroll to the collection">
+    <span class="label-sm">Shop</span>
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 5v14m-6-6 6 6 6-6"/></svg>
+  </button>
+</header>
+
+<!-- ============ BEAUTIFUL FINISH ============ -->
+<section class="split" id="collection">
+  <div class="stack">
+    <div class="prodcell">
+      <span class="shot"><canvas data-frame="round" data-tone="amber"></canvas></span>
+      <span class="cap">Gerard</span>
+    </div>
+    <div class="prodcell">
+      <span class="shot"><canvas data-frame="round" data-tone="amber"></canvas></span>
+      <span class="cap">Gerard</span>
+    </div>
+  </div>
+  <div class="half" style="border-bottom:0">
+    <div class="pitch">
+      <h2>Beautiful Finish</h2>
+      <p>Our premium glasses are made with only the best materials. The Gerard is
+         a classic tortoise shell finish with an eco-friendly twist.</p>
+      <button class="outline">Shop this frame</button>
+    </div>
+    <div class="bleed">
+      <span class="big"><canvas data-frame="wide" data-tone="tortoise"></canvas></span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ITALIAN MADE ============ -->
+<section class="half">
+  <div class="photo">
+    <span class="brief">
+      <span class="label-sm">Photography &mdash; slot 01</span>
+      <p>Portrait, 3:4 crop. Model in Bruno optical, three-quarter turn, window light
+         from camera left. Reserved at this exact ratio so no layout shift on load.</p>
+    </span>
+  </div>
+  <div class="pitch center">
+    <h2>Italian Made</h2>
+    <p>Made in Italy with 100% natural materials.</p>
+    <button class="outline">Shop this frame</button>
+    <span class="big" style="width:100%;max-width:430px;aspect-ratio:16/10;margin-top:1.75rem">
+      <canvas data-frame="wide" data-tone="olive"></canvas>
+    </span>
+    <span class="dotwrap" role="tablist" aria-label="Frame gallery">
+      <button class="dot" role="tab" aria-current="true" aria-label="Frame 1"></button>
+      <button class="dot" role="tab" aria-current="false" aria-label="Frame 2"></button>
+      <button class="dot" role="tab" aria-current="false" aria-label="Frame 3"></button>
+    </span>
+  </div>
+</section>
+
+<!-- ============ STRONG HINGES ============ -->
+<section class="half">
+  <div class="pitch center">
+    <h2>Strong Hinges</h2>
+    <p>Reinforced five-barrel hinges, hand-set into the acetate.</p>
+    <button class="outline">Shop this frame</button>
+  </div>
+  <div class="bleed" style="background:var(--warm-2)">
+    <span class="big"><canvas data-frame="detail" data-tone="tortoise"></canvas></span>
+  </div>
+</section>
+
+<!-- ============ TRIO ============ -->
+<div class="sectionhead">
+  <span class="label">The Alexandra</span>
+  <h2>Three ways to wear it</h2>
+</div>
+<section class="trio">
+  <div class="prodcell">
+    <span class="shot"><canvas data-frame="round" data-tone="amber"></canvas></span>
+    <span class="cap">Alexandra</span>
+    <span class="price">&pound;98</span>
+  </div>
+  <div class="prodcell">
+    <span class="shot"><canvas data-frame="round" data-tone="tortoise"></canvas></span>
+    <span class="cap">Alexandra</span>
+    <span class="price">&pound;98</span>
+  </div>
+  <div class="prodcell">
+    <span class="shot"><canvas data-frame="round" data-tone="olive"></canvas></span>
+    <span class="cap">Alexandra</span>
+    <span class="price">&pound;98</span>
+  </div>
+</section>
+
+<!-- ============ FOOTER + SPEC ============ -->
+<footer class="foot" id="about">
+  <div class="footgrid">
+    <div>
+      <h3>Optique</h3>
+      <p style="font-size:.8125rem;color:var(--muted);margin-top:.75rem;font-weight:300;line-height:1.8">
+        Hand-finished optical frames, made in Italy, shipped free with a
+        thirty-day home trial.</p>
+    </div>
+    <div>
+      <span class="label" style="color:var(--muted)">Shop</span>
+      <ul><li><a href="#collection">Men&rsquo;s optical</a></li>
+          <li><a href="#collection">Women&rsquo;s optical</a></li>
+          <li><a href="#collection">Sunglasses</a></li>
+          <li><a href="#collection">Home trial</a></li></ul>
+    </div>
+    <div>
+      <span class="label" style="color:var(--muted)">Service</span>
+      <ul><li><a href="#about">Free shipping</a></li>
+          <li><a href="#about">Returns</a></li>
+          <li><a href="#about">Prescriptions</a></li>
+          <li><a href="#about">Contact</a></li></ul>
+    </div>
+  </div>
+
+  <div class="specnote">
+    <span class="label">Build note &mdash; where this departs from the reference</span>
+    <p style="font-size:.8125rem;color:var(--muted);margin-top:.9rem;max-width:68ch;font-weight:300;line-height:1.9">
+      The layout, type treatment and panel rhythm follow the reference exactly. Two colours
+      do not: measured against this warm ground, the reference&rsquo;s brass nav accent reads
+      about <strong style="color:var(--ink);font-weight:500">2.83:1</strong> and its grey caption
+      copy about <strong style="color:var(--ink);font-weight:500">2.53:1</strong> &mdash; both below
+      the 4.5:1 minimum, and the caption copy is the hardest text on the page to read.
+      Deepening each by a few steps holds the look and clears the bar.
+    </p>
+    <div class="swatchrow">
+      <div class="swatch"><i style="background:#A89A54"></i><code>#A89A54</code>
+        <em>reference brass &mdash; <span class="no">2.83:1 fail</span></em></div>
+      <div class="swatch"><i style="background:#6F6730"></i><code>#6F6730</code>
+        <em>used here &mdash; <span class="ok">5.13:1 pass</span></em></div>
+      <div class="swatch"><i style="background:#9A9A96"></i><code>#9A9A96</code>
+        <em>reference caption &mdash; <span class="no">2.53:1 fail</span></em></div>
+      <div class="swatch"><i style="background:#6E6E6A"></i><code>#6E6E6A</code>
+        <em>used here &mdash; <span class="ok">4.58:1 pass</span></em></div>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* ---- shared 3D projector: frames drawn, not photographed ---- */
+  function rotate(p,rx,ry){
+    var cy=Math.cos(ry),sy=Math.sin(ry),cx=Math.cos(rx),sx=Math.sin(rx);
+    var x=p[0]*cy+p[2]*sy, z=-p[0]*sy+p[2]*cy, y=p[1];
+    return [x, y*cx-z*sx, y*sx+z*cx];
+  }
+  function project(p,w,h,s){ var d=4.2,f=d/(d-p[2]); return [w/2+p[0]*f*s, h/2-p[1]*f*s]; }
+
+  function geometry(kind){
+    var rimRX = kind==="wide" ? 0.68 : 0.60;
+    var rimRY = kind==="wide" ? 0.40 : 0.50;
+    var sep   = kind==="wide" ? 0.80 : 0.70;
+    var rims=[],i,a,lens;
+    for(lens=0;lens<2;lens++){
+      var cxp = lens? sep : -sep, pts=[];
+      for(i=0;i<=56;i++){
+        a=i/56*Math.PI*2;
+        var x=cxp+Math.cos(a)*rimRX;
+        var y=Math.sin(a)*rimRY - (kind==="wide"? Math.cos(a*2)*0.04 : 0);
+        pts.push([x,y,-Math.abs(x)*0.15]);
+      }
+      rims.push(pts);
+    }
+    var bridge=[];
+    for(i=0;i<=16;i++){ var t=i/16;
+      bridge.push([-(sep-rimRX)+t*2*(sep-rimRX), 0.18+Math.sin(t*Math.PI)*0.06, -0.02]); }
+    var temples=[];
+    for(lens=0;lens<2;lens++){
+      var g=lens?1:-1;
+      temples.push([[g*(sep+rimRX-0.03),0.14,-0.18],[g*(sep+rimRX+0.02),0.12,-0.6],
+                    [g*(sep+rimRX-0.04),0.07,-1.7],[g*(sep+rimRX-0.08),-0.14,-2.05],
+                    [g*(sep+rimRX-0.10),-0.34,-2.16]]);
+    }
+    return {rims:rims,bridge:bridge,temples:temples};
+  }
+
+  var TONES = {
+    amber:    {base:"#8A5A2B", hi:"#C2873F", lens:"rgba(150,165,150,.30)"},
+    tortoise: {base:"#4A2C17", hi:"#A8722F", lens:"rgba(120,130,120,.24)"},
+    olive:    {base:"#5A5C3A", hi:"#8D9068", lens:"rgba(140,150,135,.28)"}
+  };
+
+  function draw(cv, kind, tone){
+    var dpr=Math.min(window.devicePixelRatio||1,2);
+    var r=cv.getBoundingClientRect(); if(!r.width) return;
+    cv.width=Math.round(r.width*dpr); cv.height=Math.round(r.height*dpr);
+    var ctx=cv.getContext("2d"); ctx.setTransform(dpr,0,0,dpr,0,0);
+    var w=r.width,h=r.height,s=Math.min(w,h);
+    ctx.clearRect(0,0,w,h);
+
+    var G=geometry(kind), T=TONES[tone]||TONES.amber;
+    var rx = kind==="detail" ? 0.02 : 0.09;
+    var ry = kind==="detail" ? -1.15 : -0.30;
+    var scale = (kind==="wide"?0.30 : kind==="detail"?0.34 : 0.32) * s;
+
+    function path(pts,close){
+      ctx.beginPath();
+      for(var i=0;i<pts.length;i++){
+        var q=project(rotate(pts[i],rx,ry),w,h,scale);
+        if(i===0)ctx.moveTo(q[0],q[1]); else ctx.lineTo(q[0],q[1]);
+      }
+      if(close)ctx.closePath();
+    }
+    ctx.lineJoin="round"; ctx.lineCap="round";
+
+    /* soft contact shadow so the frame sits on the ground */
+    ctx.save();
+    ctx.globalAlpha=.13; ctx.fillStyle="#1A1A1A";
+    ctx.beginPath();
+    ctx.ellipse(w/2, h/2+scale*0.62, scale*1.5, scale*0.12, 0, 0, 6.2832);
+    ctx.filter="blur(6px)"; ctx.fill(); ctx.restore();
+
+    /* temples behind */
+    ctx.strokeStyle=T.base; ctx.lineWidth=Math.max(3,scale*0.075); ctx.globalAlpha=.85;
+    for(var t=0;t<G.temples.length;t++){ path(G.temples[t],false); ctx.stroke(); }
+    ctx.globalAlpha=1;
+
+    /* lens glass */
+    for(var r2=0;r2<G.rims.length;r2++){
+      path(G.rims[r2],true);
+      ctx.fillStyle=T.lens; ctx.fill();
+    }
+    /* acetate body, then a mottled highlight pass — reads as tortoise shell */
+    ctx.lineWidth=Math.max(5,scale*0.115); ctx.strokeStyle=T.base;
+    for(r2=0;r2<G.rims.length;r2++){ path(G.rims[r2],true); ctx.stroke(); }
+    path(G.bridge,false); ctx.stroke();
+
+    ctx.save();
+    ctx.lineWidth=Math.max(2,scale*0.05); ctx.strokeStyle=T.hi; ctx.globalAlpha=.75;
+    ctx.setLineDash([scale*0.12, scale*0.09]);
+    for(r2=0;r2<G.rims.length;r2++){ path(G.rims[r2],true); ctx.stroke(); }
+    ctx.restore();
+
+    /* top specular */
+    ctx.save();
+    ctx.lineWidth=Math.max(1,scale*0.022); ctx.strokeStyle="rgba(255,255,255,.62)";
+    for(r2=0;r2<G.rims.length;r2++){
+      var pts=G.rims[r2].slice(4,22);
+      path(pts,false); ctx.stroke();
+    }
+    ctx.restore();
+  }
+
+  function drawAll(){
+    var list=document.querySelectorAll("canvas[data-frame]");
+    for(var i=0;i<list.length;i++){
+      draw(list[i], list[i].getAttribute("data-frame"), list[i].getAttribute("data-tone"));
+    }
+    plate();
+  }
+
+  /* ---- hero plate: soft coastal light, the photograph's stand-in ---- */
+  function plate(){
+    var cv=document.getElementById("heroPlate");
+    var dpr=Math.min(window.devicePixelRatio||1,2);
+    var r=cv.getBoundingClientRect(); if(!r.width) return;
+    cv.width=Math.round(r.width*dpr); cv.height=Math.round(r.height*dpr);
+    var ctx=cv.getContext("2d"); ctx.setTransform(dpr,0,0,dpr,0,0);
+    var w=r.width,h=r.height;
+    var g=ctx.createLinearGradient(0,0,0,h);
+    g.addColorStop(0,"#F6F4F0"); g.addColorStop(.42,"#E7E6E1");
+    g.addColorStop(.62,"#CFD4D2"); g.addColorStop(1,"#BFC3BC");
+    ctx.fillStyle=g; ctx.fillRect(0,0,w,h);
+    /* horizon band */
+    ctx.fillStyle="rgba(150,160,158,.35)"; ctx.fillRect(0,h*0.60,w,1.5);
+    /* warm sun wash from the right, as in the reference */
+    var s2=ctx.createRadialGradient(w*0.78,h*0.30,0,w*0.78,h*0.30,Math.max(w,h)*0.7);
+    s2.addColorStop(0,"rgba(255,238,206,.55)"); s2.addColorStop(1,"rgba(255,238,206,0)");
+    ctx.fillStyle=s2; ctx.fillRect(0,0,w,h);
+    /* film grain */
+    ctx.globalAlpha=.05;
+    for(var i=0;i<1400;i++){
+      ctx.fillStyle = i%2 ? "#000" : "#fff";
+      ctx.fillRect(Math.random()*w, Math.random()*h, 1, 1);
+    }
+    ctx.globalAlpha=1;
+  }
+
+  drawAll();
+  var rt;
+  window.addEventListener("resize", function(){
+    clearTimeout(rt); rt=setTimeout(drawAll, 120);
+  });
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(drawAll);
+
+  /* ---- interactions ---- */
+  document.getElementById("scrollPill").addEventListener("click", function(){
+    document.getElementById("collection").scrollIntoView({behavior: reduce?"auto":"smooth"});
+  });
+
+  var tones=["amber","tortoise","olive"];
+  var dots=[].slice.call(document.querySelectorAll(".dot"));
+  var gallery=document.querySelector('.pitch.center canvas[data-frame="wide"]');
+  dots.forEach(function(d,i){
+    d.addEventListener("click", function(){
+      dots.forEach(function(x){ x.setAttribute("aria-current","false"); });
+      d.setAttribute("aria-current","true");
+      gallery.setAttribute("data-tone", tones[i]);
+      draw(gallery, "wide", tones[i]);
+    });
+  });
+
+  var count=1;
+  [].slice.call(document.querySelectorAll(".outline")).forEach(function(b){
+    b.addEventListener("click", function(){
+      count++; document.getElementById("orderCount").textContent=count;
+      var was=b.textContent; b.textContent="Added";
+      setTimeout(function(){ b.textContent=was; }, 1400);
+    });
+  });
+})();
+</script>
